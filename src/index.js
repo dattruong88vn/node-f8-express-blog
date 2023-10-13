@@ -5,13 +5,18 @@ const { engine } = require("express-handlebars");
 
 const app = express();
 
+// static
+app.use(express.static(path.join(__dirname, "public")));
+
+// logger
+app.use(morgan("combined"));
+
+// engine template
 app.engine(".hbs", engine({ extname: ".hbs" }));
 app.set("view engine", ".hbs");
 app.set("views", path.join(__dirname, "/resouces/views"));
 
 const port = 3000;
-
-app.use(morgan("combined"));
 
 app.get("/", (req, res) => {
   res.render("home");
