@@ -1,6 +1,6 @@
 const path = require("node:path");
 const express = require("express");
-const morgan = require("morgan");
+// const morgan = require("morgan");
 const { engine } = require("express-handlebars");
 
 const app = express();
@@ -27,7 +27,7 @@ app.get("/news", (req, res) => {
 
 app.get("/search", (req, res) => {
   console.log(req.query);
-  res.render("news");
+  res.render("search");
 });
 
 app.listen(port, () => {
