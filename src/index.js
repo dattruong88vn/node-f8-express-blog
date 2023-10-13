@@ -9,7 +9,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 
 // logger
-app.use(morgan("combined"));
+// app.use(morgan("combined"));
 
 // engine template
 app.engine(".hbs", engine({ extname: ".hbs" }));
@@ -22,6 +22,11 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 app.get("/news", (req, res) => {
+  res.render("news");
+});
+
+app.get("/search", (req, res) => {
+  console.log(req.query);
   res.render("news");
 });
 
