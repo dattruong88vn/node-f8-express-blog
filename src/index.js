@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // engine template
 app.engine(".hbs", engine({ extname: ".hbs" }));
 app.set("view engine", ".hbs");
-app.set("views", path.join(__dirname, "/resouces/views"));
+app.set("views", path.join(__dirname, "resouces", "views"));
 
 const port = 3000;
 
