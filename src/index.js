@@ -4,11 +4,14 @@ const express = require("express");
 const { engine } = require("express-handlebars");
 
 const route = require("./routes");
-const app = express();
+const db = require("./config/db");
 
+// connect to DB
+db.connect();
+
+const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 // static
 app.use(express.static(path.join(__dirname, "public")));
 

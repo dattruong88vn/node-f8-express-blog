@@ -1,7 +1,16 @@
+const mongoose = require("mongoose");
+const CourseModel = require("../models/Course");
+
 class SiteController {
   // GET news
-  index(req, res) {
-    res.render("home");
+  async index(req, res) {
+    try {
+      const data = await CourseModel.find();
+      console.log(data);
+      res.json(data);
+    } catch (err) {
+      res.status(400).json({ error: "Error" });
+    }
   }
 
   // GET search
