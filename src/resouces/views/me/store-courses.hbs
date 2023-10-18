@@ -22,10 +22,63 @@
               type="button"
               class="btn btn-primary"
             >Primary</a>
-            <a href="#" type="button" class="btn btn-danger">Danger</a>
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-toggle="modal"
+              data-target="#confirmDelete"
+              data-id="{{this._id}}"
+              onclick="selectId('{{this._id}}')"
+            >Danger</button>
           </td>
         </tr>
       {{/each}}
     </tbody>
   </table>
 </div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="confirmDelete"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="confirmDeleteLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmDeleteLabel">Modal title</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="modal-content">
+        Bạn muốn xoá Khoá học này
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+        >Huỷ</button>
+        <form id="form-submit" method="POST" action="courses/delete/{{co}}">
+          <button type="submit" class="btn btn-primary">Xoá</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var selectedId; function selectId(id) { selectedId = id;
+  document.getElementById("modal-content").innerHTML = `Bạn muốn xoá khoá học
+  ${selectedId}`; document.getElementById("form-submit").setAttribute('action',
+  `/courses/${selectedId}?_method=DELETE`); }
+</script>
