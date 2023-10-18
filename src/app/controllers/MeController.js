@@ -6,7 +6,9 @@ class MeController {
     try {
       let courses = await Course.find();
       courses = multipleMongooseToObject(courses);
-      res.render("me/store-courses", { courses });
+
+      let countDeleted = await Course.countWithDeleted({ deleted: true });
+      res.render("me/store-courses", { courses, countDeleted });
     } catch (err) {
       next(err);
     }

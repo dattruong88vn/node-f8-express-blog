@@ -71,7 +71,14 @@ class CourseController {
       await CourseModel.restore({
         _id: req.params.id,
       });
-      res.redirect("back");
+      const countDeleted = await CourseModel.countWithDeleted({
+        deleted: true,
+      });
+      if (countDeleted > 0) {
+        res.redirect("back");
+      } else {
+        res.redirect("/me/store/courses");
+      }
     } catch (err) {
       next(err);
     }
