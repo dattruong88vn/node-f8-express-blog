@@ -54,8 +54,30 @@ class CourseController {
       next(err);
     }
   }
-  // DELETE /course/:id
+  // soft DELETE /course/:id
   async delete(req, res, next) {
+    try {
+      await CourseModel.delete({
+        _id: req.params.id,
+      });
+      res.redirect("back");
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async restore(req, res, next) {
+    try {
+      await CourseModel.restore({
+        _id: req.params.id,
+      });
+      res.redirect("back");
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async forceDelete(req, res, next) {
     try {
       await CourseModel.deleteOne({
         _id: req.params.id,

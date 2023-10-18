@@ -1,0 +1,55 @@
+<div class='mt-4'>
+  <div><h3>Khoá học đã xoá</h3><a href='/me/store/courses'>Quay lại</a>
+  </div>
+
+  <table class='table'>
+    <thead>
+      <tr>
+        <th scope='col'>#</th>
+        <th scope='col'>Tên khoá học</th>
+        <th scope='col'>Mô tả</th>
+        <th scope='col'>Hình ảnh</th>
+        <th scope='col'>Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each courses}}
+        <tr>
+          <th scope='row'>{{sum @index 1}}</th>
+          <td>{{this.name}}</td>
+          <td>{{this.description}}</td>
+          <td>{{this.image}}</td>
+          <td>
+            <button
+              type='button'
+              class='btn btn-primary'
+              onclick="restoreCourse('{{this._id}}')"
+            >Khôi phục</button>
+            <button
+              type='button'
+              class='btn btn-danger'
+              data-toggle='modal'
+              data-target='#confirmDelete'
+              data-id='{{this._id}}'
+              onclick="forceDelete('{{this._id}}')"
+            >Xoá vĩnh viễn</button>
+          </td>
+        </tr>
+
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+
+<form id='form-trash' method='POST'></form>
+
+<!-- Modal -->
+
+<script>
+  var selectedId; function restoreCourse(id) { selectedId = id; const form =
+  document.getElementById("form-trash"); form.setAttribute('action',
+  `/courses/${selectedId}/restore?_method=PUT`); form.submit(); } function
+  forceDelete(id) { console.log(123); selectedId = id; const form =
+  document.getElementById("form-trash"); form.setAttribute('action',
+  `/courses/${selectedId}/delete?_method=DELETE`); form.submit(); }
+</script>

@@ -1,37 +1,48 @@
-<div class="mt-4">
-  <table class="table">
+<div class='mt-4'>
+  <div><h3>Khoá học của tôi</h3><a href='/me/courses/trash'>Thùng rác</a>
+  </div>
+
+  <table class='table'>
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Tên khoá học</th>
-        <th scope="col">Mô tả</th>
-        <th scope="col">Hình ảnh</th>
-        <th scope="col">Thao tác</th>
+        <th scope='col'>#</th>
+        <th scope='col'>Tên khoá học</th>
+        <th scope='col'>Mô tả</th>
+        <th scope='col'>Hình ảnh</th>
+        <th scope='col'>Thao tác</th>
       </tr>
     </thead>
     <tbody>
       {{#each courses}}
         <tr>
-          <th scope="row">{{sum @index 1}}</th>
+          <th scope='row'>{{sum @index 1}}</th>
           <td>{{this.name}}</td>
           <td>{{this.description}}</td>
           <td>{{this.image}}</td>
           <td>
             <a
-              href="/courses/{{this._id}}/edit"
-              type="button"
-              class="btn btn-primary"
-            >Primary</a>
+              href='/courses/{{this._id}}/edit'
+              type='button'
+              class='btn btn-primary'
+            >Chi tiết</a>
             <button
-              type="button"
-              class="btn btn-danger"
-              data-toggle="modal"
-              data-target="#confirmDelete"
-              data-id="{{this._id}}"
+              type='button'
+              class='btn btn-danger'
+              data-toggle='modal'
+              data-target='#confirmDelete'
+              data-id='{{this._id}}'
               onclick="selectId('{{this._id}}')"
-            >Danger</button>
+            >Xoá</button>
           </td>
         </tr>
+      {{else}}
+        <tr>
+          <td colspan='5' class='text-center'>
+            Bạn chưa đăng khoá học nào.
+            <a href='/courses/create'>Đăng khoá học</a>
+          </td>
+        </tr>
+
       {{/each}}
     </tbody>
   </table>
@@ -39,37 +50,37 @@
 
 <!-- Modal -->
 <div
-  class="modal fade"
-  id="confirmDelete"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="confirmDeleteLabel"
-  aria-hidden="true"
+  class='modal fade'
+  id='confirmDelete'
+  tabindex='-1'
+  role='dialog'
+  aria-labelledby='confirmDeleteLabel'
+  aria-hidden='true'
 >
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="confirmDeleteLabel">Modal title</h5>
+  <div class='modal-dialog' role='document'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h5 class='modal-title' id='confirmDeleteLabel'>Modal title</h5>
         <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
+          type='button'
+          class='close'
+          data-dismiss='modal'
+          aria-label='Close'
         >
-          <span aria-hidden="true">&times;</span>
+          <span aria-hidden='true'>&times;</span>
         </button>
       </div>
-      <div class="modal-body" id="modal-content">
+      <div class='modal-body' id='modal-content'>
         Bạn muốn xoá Khoá học này
       </div>
-      <div class="modal-footer">
+      <div class='modal-footer'>
         <button
-          type="button"
-          class="btn btn-secondary"
-          data-dismiss="modal"
+          type='button'
+          class='btn btn-secondary'
+          data-dismiss='modal'
         >Huỷ</button>
-        <form id="form-submit" method="POST" action="courses/delete/{{co}}">
-          <button type="submit" class="btn btn-primary">Xoá</button>
+        <form id='form-submit' method='POST' action='courses/delete/{{co}}'>
+          <button type='submit' class='btn btn-primary'>Xoá</button>
         </form>
       </div>
     </div>
