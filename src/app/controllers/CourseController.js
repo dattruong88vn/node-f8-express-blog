@@ -30,6 +30,30 @@ class CourseController {
       next(err);
     }
   }
+
+  async edit(req, res, next) {
+    try {
+      const course = await CourseModel.findById(req.params.id);
+      res.render("courses/edit", { course: mogooseToObject(course) });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  // PUT /course/:id
+  async update(req, res, next) {
+    try {
+      await CourseModel.updateOne(
+        {
+          _id: req.params.id,
+        },
+        req.body
+      );
+      res.redirect("/me/store/courses");
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 module.exports = new CourseController();

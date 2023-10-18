@@ -7,7 +7,6 @@ class SiteController {
   async index(req, res, next) {
     try {
       let courses = await CourseModel.find();
-      console.log(courses);
       courses = multipleMongooseToObject(courses);
       res.render("home", { courses });
     } catch (err) {
